@@ -9,20 +9,50 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="game.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
 </head>
 
-<body>
+<body class="bg-secondary text-light">
   <div class="container">
+    <div class="row p-5"></div>
     <div class="row">
-      <div class="col-3 offset-5 text-center">
-        <img class="enemy" src="" alt="The Enemy" width="200px">
+      <div class="col-3 text-center">
+        <img src="toaster.png" alt="Toast" width="200px" height="175px">
         <br>
-        <button class="btn btn-primary" onclick="slap()">Slap</button>
-        <button class="btn btn-primary" onclick="punch()">Punch</button>
-        <button class="btn btn-primary" onclick="kick()">Kick</button>
-        <h3>Name: <span id="enemy-name">--</span></h3>
-        <h3>Health: <span id="health">--</span></h3>
+        <h3>You</h3>
+        <h3>Health: <span id="your-health">--</span></h3>
+        <h4 id="your-feedback"></h4>
         <h4>Rounds: <span id="rounds">--</span></h4>
+        <dl id="your-inventory" class="bg-light text-dark rounded">
+          <dt>Your Inventory:</dt>
+        </dl>
+      </div>
+
+      <div class="col-3 offset-6 text-center">
+        <img src="bread.gif" alt="Bread" width="200px" height="175px">
+        <br>
+        <h3>Enemy: <span id="enemy-name">--</span></h3>
+        <h3>Health: <span id="enemy-health">--</span></h3>
+        <h4 id="enemy-feedback"></h4>
+        <dl id="enemy-inventory" class="bg-light text-dark rounded">
+          <dt>Bread's Inventory:</dt>
+        </dl>
+      </div>
+    </div>
+    <div class="row fixed-bottom bg-dark p-5">
+      <div class="col-10 offset-1 d-flex justify-content-around p-5">
+        <button class="btn btn-primary" onclick="hit(1)"><i class="far fa-hand-paper"></i>Slap</button>
+        <button class="btn btn-primary" onclick="hit(2)"><i class="far fa-hand-rock"></i>Punch</button>
+        <button class="btn btn-primary" onclick="hit(3)"><i class="fas fa-shoe-prints"></i>Kick</button>
+        <button class="btn btn-danger" onclick="giveToast(items.sword)"><i class="fas fa-crosshairs"></i> Get a
+          sword</button>
+        <button class="btn btn-danger" onclick="giveToast(items.shield)"><i class="fas fa-shield-alt"></i> Get a
+          shield</button>
+        <button class="btn btn-danger" onclick="giveToast(items.armor)"><i class="fas fa-shield-alt"></i> Get some
+          armor</button>
+        <button class="btn btn-danger" onclick="giveToast(items.bow)"><i class="fas fa-crosshairs"></i> Get a
+          bow</button>
+        <button class="btn btn-success" onclick="reset()">Reset</button>
       </div>
     </div>
   </div>
