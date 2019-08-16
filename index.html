@@ -5,11 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Slap Game</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="game.css">
 </head>
 
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-3 offset-5 text-center">
+        <img class="enemy" src="" alt="The Enemy" width="200px">
+        <br>
+        <button class="btn btn-primary" onclick="slap()">Slap</button>
+        <button class="btn btn-primary" onclick="punch()">Punch</button>
+        <button class="btn btn-primary" onclick="kick()">Kick</button>
+        <h3>Name: <span id="enemy-name">--</span></h3>
+        <h3>Health: <span id="health">--</span></h3>
+        <h4>Rounds: <span id="rounds">--</span></h4>
+      </div>
+    </div>
+  </div>
 
   <script src="game.js"></script>
 </body>
