@@ -14,36 +14,52 @@
 
 <body class="bg-secondary text-light">
   <div class="container">
-    <div class="row p-5"></div>
+    <div class="row p-1"></div>
     <div class="row">
       <div class="col-3 text-center">
         <img src="toaster.png" alt="Toast" width="200px" height="175px">
         <br>
         <h3>You</h3>
         <h3>Health: <span id="your-health">--</span></h3>
+        <div class="progress bg-danger">
+          <div id="your-health-bar" class="progress-bar health-bar bg-success" style="width: 55%"></div>
+        </div>
         <h4 id="your-feedback"></h4>
         <h4>Rounds: <span id="rounds">--</span></h4>
         <dl id="your-inventory" class="bg-light text-dark rounded">
           <dt>Your Inventory:</dt>
         </dl>
       </div>
+      <div class="col-2">
+        <dl id="toast-modifiers" class="bg-dark rounded p-1">
+          <dt>Modifiers:</dt>
+        </dl>
+      </div>
+      <div class="col-2 offset-2">
+        <dl id="bread-modifiers" class="bg-dark rounded p-1">
+          <dt>Modifiers:</dt>
+        </dl>
+      </div>
 
-      <div class="col-3 offset-6 text-center">
+      <div class="col-3 text-center">
         <img src="bread.gif" alt="Bread" width="200px" height="175px">
         <br>
         <h3>Enemy: <span id="enemy-name">--</span></h3>
         <h3>Health: <span id="enemy-health">--</span></h3>
+        <div class="progress bg-danger">
+          <div id="enemy-health-bar" class="progress-bar health-bar bg-success"></div>
+        </div>
         <h4 id="enemy-feedback"></h4>
         <dl id="enemy-inventory" class="bg-light text-dark rounded">
           <dt>Bread's Inventory:</dt>
         </dl>
       </div>
     </div>
-    <div class="row fixed-bottom bg-dark p-5">
-      <div class="col-10 offset-1 d-flex justify-content-around p-5">
-        <button class="btn btn-primary" onclick="hit(1)"><i class="far fa-hand-paper"></i>Slap</button>
-        <button class="btn btn-primary" onclick="hit(2)"><i class="far fa-hand-rock"></i>Punch</button>
-        <button class="btn btn-primary" onclick="hit(3)"><i class="fas fa-shoe-prints"></i>Kick</button>
+    <div class="row fixed-bottom bg-dark p-3">
+      <div class="col-10 offset-1 d-flex justify-content-around p-3">
+        <button class="btn btn-primary" onclick="hit(1)"><i class="fas fa-hand-paper"></i>Slap</button>
+        <button class="btn btn-primary" onclick="hit(2)"><i class="fas fa-shoe-prints"></i>Shin-kick</button>
+        <button class="btn btn-primary" onclick="hit(3)"><i class="fas fa-fire text-warning"></i>Burn</button>
         <button class="btn btn-danger" onclick="giveToast(items.sword)"><i class="fas fa-crosshairs"></i> Get a
           sword</button>
         <button class="btn btn-danger" onclick="giveToast(items.shield)"><i class="fas fa-shield-alt"></i> Get a

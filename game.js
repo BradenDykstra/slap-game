@@ -30,6 +30,8 @@ function reset() {
   document.querySelector('#enemy-inventory').innerHTML = "<dt>Bread's Inventory:</dt>";
   document.querySelector('#your-feedback').textContent = "";
   document.querySelector('#enemy-feedback').textContent = "";
+  document.querySelector('#toast-modifiers').innerHTML = '<dt>Modifiers:</dt>';
+  document.querySelector('#bread-modifiers').innerHTML = '<dt>Modifiers:</dt>';
   rounds = 0;
   draw();
 }
@@ -59,30 +61,40 @@ function addMods(dmg, target, attacker) {
 }
 
 function advanceRound() {
-  let newItem = Math.floor(Math.random() * 3);
-  switch (newItem) {
-    case 0:
-      giveBread(items.sword);
-      break;
-    case 1:
-      giveBread(items.shield);
-      break;
-    case 2:
-      giveBread(items.armor);
-      break;
-    case 3:
-      giveBread(items.bow);
-      break;
-  };
+  if (bread.health <= 0) {
+    document.querySelector('#enemy-feedback').innerHTML = '<img src="ko.jpg" alt="K.O." width="150px" />';
+  }
+  breadAction();
+  if (toast.health <= 0) {
+    document.querySelector('#your-feedback').innerHTML = '<img src="ko.jpg" alt="K.O." width="150px" />';
+  }
   rounds++;
   draw();
+}
+
+function breadAction() {
+  let action = Math.floor(Math.random() * 2);
+  if (bread.items.length > 2) {
+    action = 0;
+  }
+  switch (action) {
+    case 0:
+      getHit(Math.floor(Math.random() * 3))
+      console.log("Bread attacks")
+      break;
+    case 1:
+      giveBread(Math.floor(Math.random() * 4))
+      console.log("Bread picks up an item")
+      break;
+  }
 }
 
 function giveToast(item) {
   let inventory = document.querySelector('#your-inventory');
   if (toast.items.length < 3) {
     toast.items.push(item);
-    inventory.innerHTML += '<dt>' + item.name + '</dt><dd>' + item.description + '</dd>';
+    inventory.innerHTML += '<dd>' + item.name + '</dd>';
+    document.querySelector('#toast-modifiers').innerHTML += '<dd>x' + item.damageMod + ' damage, x' + item.defenseMod + ' defense.'
   };
   advanceRound();
 }
@@ -90,15 +102,35 @@ function giveToast(item) {
 function giveBread(item) {
   let inventory = document.querySelector('#enemy-inventory');
   if (bread.items.length < 3) {
-    bread.items.push(item);
-    inventory.innerHTML += '<dt>' + item.name + '</dt><dd>' + item.description + '</dd>';
+    switch (item) {
+      case 0:
+        bread.items.push(items.sword);
+        inventory.innerHTML += '<dd>Sword</dd>'
+        document.querySelector('#bread-modifiers').innerHTML += '<dd>x' + items.sword.damageMod + ' damage, x' + items.sword.defenseMod + ' defense.'
+        break;
+      case 1:
+        bread.items.push(items.shield);
+        inventory.innerHTML += '<dd>Shield</dd>'
+        document.querySelector('#bread-modifiers').innerHTML += '<dd>x' + items.shield.damageMod + ' damage, x' + items.shield.defenseMod + ' defense.'
+        break;
+      case 2:
+        bread.items.push(items.armor);
+        inventory.innerHTML += '<dd>Armor</dd>'
+        document.querySelector('#bread-modifiers').innerHTML += '<dd>x' + items.armor.damageMod + ' damage, x' + items.armor.defenseMod + ' defense.'
+        break;
+      case 3:
+        bread.items.push(items.bow);
+        inventory.innerHTML += '<dd>Bow</dd>'
+        document.querySelector('#bread-modifiers').innerHTML += '<dd>x' + items.bow.damageMod + ' damage, x' + items.bow.defenseMod + ' defense.'
+        break;
+    }
   };
-
 }
 
 
 function draw() {
-
+  document.getElementById('your-health-bar').style.width = toast.health + '%';
+  document.getElementById('enemy-health-bar').style.width = bread.health + '%';
   let enemyHealthText = document.querySelector('#enemy-health');
   enemyHealthText.textContent = bread.health.toString();
   let yourHealthText = document.querySelector('#your-health');
